@@ -26,7 +26,7 @@ def valida_input(nums: str, valida_zero: bool) -> []:
 
 
 def main():
-    value = 'AKA'
+    value = 'AKAS'
     tree, byte_stream = Huffman.codify(value)
     Huffman.decodify(tree, byte_stream)
 

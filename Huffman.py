@@ -33,10 +33,25 @@ def codify(symbols: str) -> (HuffmanTree.Tree, str):
     byte_stream = ''
     for char in symbols:
         byte_stream += generate_bytes(tree, char)
+
+    print(byte_stream)
     return tree, byte_stream
 
 
 def decodify(tree: HuffmanTree.Tree, byte_stream: str) -> None:
     string = ''
+    index = 0
+    offset = 1
+    while index < len(byte_stream):
+        bits = byte_stream[index: index + offset]
+        value = tree.find_symbol_by_bytes(bits)
+        if not value or value == '':
+            offset += 1
+            if offset + index > len(byte_stream):
+                break
+        else:
+            index += offset
+            offset = 1
+            string += value
 
     print(string)

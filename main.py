@@ -1,6 +1,8 @@
 import HuffmanBad
 import Golomb
 import Elias_Gamma
+import Fibonnaci
+import Huffman
 
 
 def valida_input(nums: str, valida_zero: bool) -> []:
@@ -24,6 +26,14 @@ def valida_input(nums: str, valida_zero: bool) -> []:
 
 
 def main():
+    value = 'AKA'
+    tree, byte_stream = Huffman.codify(value)
+    Huffman.decodify(tree, byte_stream)
+
+    array = [40]
+    code = Fibonnaci.codify(array)
+    Fibonnaci.decodify(code)
+
     choice = ''
     while choice != '4':
         choices()

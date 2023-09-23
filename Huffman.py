@@ -38,7 +38,7 @@ def codify(symbols: str) -> (HuffmanTree.Tree, str):
     return tree, byte_stream
 
 
-def decodify(tree: HuffmanTree.Tree, byte_stream: str) -> None:
+def decodify(tree: HuffmanTree.Tree, byte_stream: str) -> str:
     string = ''
     index = 0
     offset = 1
@@ -54,4 +54,4 @@ def decodify(tree: HuffmanTree.Tree, byte_stream: str) -> None:
             offset = 1
             string += value
 
-    print(string)
+    return string

@@ -26,16 +26,12 @@ def valida_input(nums: str, valida_zero: bool) -> []:
 
 
 def main():
-    value = 'AKAS'
-    tree, byte_stream = Huffman.codify(value)
-    Huffman.decodify(tree, byte_stream)
-
-    array = [40]
-    code = Fibonnaci.codify(array)
-    Fibonnaci.decodify(code)
+    # array = [40]
+    # code = Fibonnaci.codify(array)
+    # Fibonnaci.decodify(code)
 
     choice = ''
-    while choice != '4':
+    while True:
         choices()
         choice = str(input())
         if choice == '0':
@@ -67,7 +63,30 @@ def main():
             bit_array = Elias_Gamma.codify(list_of_number)
             print('decodificação')
             Elias_Gamma.decodify(bit_array)
-        elif choice == '4':
+        elif choice == '3':
+            print('copie o caminho do arquivo')
+            file_name = str(input())
+            # read file
+            file = open(file_name, 'r')
+            lines = file.readlines()
+            coded_lines = []
+            decoded_lines = []
+            for line in lines:
+                tree, byte_stream = Huffman.codify(line)
+                coded_lines.append(byte_stream + '\n')
+                decoded_lines.append(Huffman.decodify(tree, byte_stream))
+
+            file.close()
+            # write to another file
+            write_file = open('huff_out.txt', 'w')
+            for code_word in coded_lines:
+                write_file.write(code_word)
+            write_file.close()
+            print('decodificando')
+            for var in decoded_lines:
+                print(var, end="")
+
+        elif choice == '5':
             break
         else:
             print("por Favor selecione um valor válido")
@@ -80,7 +99,9 @@ def choices():
     print("Selecione 0 para codificar um valor de alfabeto com letras e números")
     print("Selecione 1 para codificar um valor de alfabeto de números positivos usando Golomb")
     print("Selecione 2 para codificar um valor de alfabeto de números positivos usando Elias_Gamma")
-    print("Selecione 4 para sair")
+    print("Selecione 3 para codificar um valor de alfabeto usando huffman")
+    print("Selecione 4 para codificar um valor de alfabeto de números usando Fibonnaci")
+    print("Selecione 5 para sair")
     print()
 
 
